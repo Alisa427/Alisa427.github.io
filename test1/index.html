@@ -12,7 +12,143 @@
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 3.9.0, nicepage.com">
+    <style> /* The MIT License (MIT) Copyright (c) 2014 Toby */
+/* demo only */
+.flex { display: flex; }
+.align-center { justify-content: center; }
+.align-vert,.align-vert.align-center { align-items: center; }
+/* end demo */
+.modal { display: none; }
+.modal--show,
+.modal--hide { display: flex; } /* classes fired by js for animation control */
+/* This is on the wrapper for the whole modal */
+.modal--align {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+.modal__container {
+  position: relative;
+  width: 100%;
+  max-width: 1300px;
+  padding: 20px 20px 0px 20px;
+  margin: 12px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+/* As there is no href to avoid the hash being added to the URL when clicked we add a pointer */
+/* This 'x' is hidden from screen readers as there is an accessible close button in the modal */
+.modal__close--x:hover {
+  cursor: pointer;
+}
+/* Animations */
+/* Open */
+.modal.modal--show {
+  animation: modal-open 0.3s;
+}
+@keyframes modal-open {
+  0%    { opacity: 0; }
+  100%  { opacity: 1; }
+}
+/* Close */
+.modal.modal--hide {
+  animation: modal-close 0.3s;
+}
+@keyframes modal-close {
+  0%    { opacity: 1; }
+  100%  { opacity: 0; }
+}
+.modal__close--x {
+  position: absolute;
+  line-height: 19px;
+  top: 10px;
+  right: 10px; 
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  font-family: "Open Sans", "Arial","sans-serif";
+  opacity: .2;
+}
+.modal {
+  text-align: center;
+} </style>
+    <style> .modal__container [class*="section"] {
+        display: block !important;
+        overflow: hidden;
+    }
+    .modal__close--x {
+        z-index: 1;
+    } </style>
+    <script> var buttonSelector = 'a[href*="-popup"]',
+    parseId = function (href) { return href.replace('-popup', '').replace('#', ''); };
+window.onload = function () {
+    $('body').on('click', buttonSelector, function (event) {
+        var id = parseId(event.currentTarget.getAttribute('href'));
+        var modalId = 'modal-' + id;
+        if ($('#' + modalId).length === 0) {
+            $('body').append('<div class="flex align-center align-vert modal modal--align" id="' + modalId + '">' +
+                '    <div class="modal__container">' +
+                '        <span class="modal__close modal__close--x" aria-hidden="true">×</span>' +
+                '        ' + document.getElementById(id).outerHTML +
+                '    </div>' +
+                '</div>');      
+        }
+        $('#' + modalId).addClass('modal--show');
+    });
+    var closeModal = function (modal) {
+        modal.removeClass('modal--show');
+        modal.addClass('modal--hide');
+        var afterAnimation = function () {
+            modal.removeClass('modal--hide');   
+        };
+        // This listens for the CSS animations to finish and then hides the modal
+        modal[0].addEventListener("webkitAnimationEnd", afterAnimation, false);
+        modal[0].addEventListener("oAnimationEnd", afterAnimation, false);
+        modal[0].addEventListener("msAnimationEnd", afterAnimation, false);
+        modal[0].addEventListener("animationend", afterAnimation, false);
+        setTimeout(afterAnimation, 400);
+    }
+    // Close the modal with any element with class 'modal__close'
+    $('body').on('click', '.modal__close', function (e) {
+        closeModal($(e.currentTarget).closest('.modal'));
+    });
+    // Click outside of the modal and close it
+    window.onclick = function (e) {
+        if ($(e.target).is('.modal')) {
+            closeModal($(e.target));
+        }
+    }
+    // Use the escape key to close modal
+    document.onkeyup = function (e) {
+        e = e || window.event;
+        if (e.keyCode == 27 && $('.modal--show').length === 1) {
+            closeModal($('.modal--show'));
+        }
+    }
+};
+document.addEventListener("DOMContentLoaded", function(event) {
+    var buttons = document.querySelectorAll(buttonSelector);
+    for (var i = 0; i < buttons.length; i++) {
+        var section = document.getElementById(parseId(buttons[i].getAttribute('href')));
+        if (section) {
+            section.style.display = 'none';
+        }       
+    }
+}); </script>
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    
+    
+    
+    
+    
+    
     
     
     
@@ -29,7 +165,7 @@
     <link rel="canonical" href="index.html">
     <meta property="og:url" content="index.html">
   </head>
-  <body data-home-page="Home.html" data-home-page-title="Home" class="u-body"><header class="u-clearfix u-custom-color-1 u-header u-header" id="sec-2313"><div class="u-clearfix u-sheet u-sheet-1">
+  <body data-home-page="Home.html" data-home-page-title="Home" class="u-body"><header class="u-border-2 u-border-custom-color-1 u-clearfix u-header u-image u-shading u-header" id="sec-2313" data-image-width="1059" data-image-height="423"><div class="u-clearfix u-sheet u-sheet-1">
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
             <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
@@ -58,79 +194,161 @@
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
+        <form action="#" class="u-border-1 u-border-grey-30 u-search u-search-left u-white u-search-1">
+          <button class="u-search-button" type="submit">
+            <span class="u-icon-rounded u-palette-2-base u-search-icon u-spacing-10 u-text-palette-3-base u-search-icon-1">
+              <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 56.966 56.966"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-3276"></use></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-3276" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" class="u-svg-content"><path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"></path></svg>
+            </span>
+          </button>
+          <input class="u-search-input" type="search" name="search" value="" placeholder="Search">
+        </form>
       </div></header>
     <section class="u-align-center u-clearfix u-image u-section-1" src="" data-image-width="1059" data-image-height="423" id="sec-d197">
       <div class="u-clearfix u-sheet u-sheet-1">
         <a href="#" class="u-btn u-button-style u-palette-2-base u-btn-1">Read More</a>
       </div>
     </section>
-    <section class="u-clearfix u-palette-1-light-3 u-section-2" id="carousel_1ab1">
+    <section class="u-clearfix u-image u-section-2" id="carousel_1ab1" data-image-width="1059" data-image-height="423">
       <div class="u-clearfix u-sheet u-valign-middle-sm u-valign-middle-xs u-sheet-1">
-        <div class="u-expanded-width-sm u-expanded-width-xs u-opacity u-opacity-55 u-shape u-shape-svg u-text-palette-2-light-1 u-shape-1">
-          <svg class="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 160" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-2739"></use></svg>
-          <svg class="u-svg-content" id="svg-2739" style="enable-background:new 0 0 160 160;"><path d="M151.7,132.5c-3.4,6-7.9,11.7-13.3,16.5c-29.2,26.1-54.1-2.3-88.2-3S0,109.5,0,91.6s14.8-31.3,25.3-45.3S33.4,11,51.8,3
-	c15.3-6.6,33.6-0.4,51.6,0.7c11.2,0.7,28.8-3.8,38.2,0.4s11.8,15.4,9.2,22.8c-1.9,5.4-5.5,11.6-12.8,16.5
-	c-9.3,10.1-4.7,22.9,3.7,33.4c7.8,9.7,17.7,11.7,18.3,23.5C160.4,110.8,157.6,122.2,151.7,132.5L151.7,132.5z"></path></svg>
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+          <h1 style="text-align: left;">
+            <span style="line-height: 2.0;">Dobrodošliii</span>
+          </h1>
+          <p style="text-align: left;">
+            <span style="line-height: 2.0;">Sample text. Click to select the text box. Click again or double click to start editing the text. Dictum non consectetur a erat nam at. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae. Tellus mauris a diam maecenas sed enim ut sem. Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus nullam. Pretium nibh ipsum consequat nisl vel pretium. In eu mi bibendum neque egestas congue. Vitae ultricies leo integer malesuada nunc. Nibh praesent tristique magna sit amet purus gravida. Diam volutpat commodo sed egestas. Gravida dictum fusce ut placerat orci nulla pellentesque.</span>
+          </p>
         </div>
-        <div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
-          <div class="u-gutter-0 u-layout">
-            <div class="u-layout-row">
-              <div class="u-size-22 u-size-60-md">
-                <div class="u-layout-col">
-                  <div class="u-align-left u-container-style u-layout-cell u-size-60 u-white u-layout-cell-1">
-                    <div class="u-container-layout u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-container-layout-1">
-                      <h3 class="u-text u-text-1">kekekeke</h3>
-                      <p class="u-text u-text-2">Our flexible and powerful platform also enables our SSRS customers to build custom connectors to data sources including the ability to connect to your own internal databases.</p>
-                      <p class="u-text u-text-3">Images from <a href="https://www.freepik.com/photos/background" class="u-active-none u-border-1 u-border-palette-3-base u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-3-base u-btn-1">Freepik</a>
-                      </p>
-                      <a href="#" class="u-active-palette-3-base u-border-1 u-border-palette-3-base u-btn u-button-style u-hover-palette-3-base u-none u-text-active-white u-text-hover-white u-text-palette-3-base u-btn-2">learn more</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="u-size-38 u-size-60-md">
-                <div class="u-layout-col">
-                  <div class="u-size-40">
-                    <div class="u-layout-row">
-                      <div class="u-align-left u-container-style u-image u-layout-cell u-size-60 u-image-1" data-image-width="150" data-image-height="97">
-                        <div class="u-container-layout u-container-layout-2"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="u-size-20">
-                    <div class="u-layout-row">
-                      <div class="u-align-left u-container-style u-layout-cell u-palette-2-light-1 u-size-30 u-layout-cell-3">
-                        <div class="u-container-layout u-valign-middle u-container-layout-3">
-                          <h3 class="u-text u-text-4">Fercera li</h3>
-                          <p class="u-text u-text-5">Probavammm da li ce mociii</p>
-                        </div>
-                      </div>
-                      <div class="u-align-left u-container-style u-image u-layout-cell u-size-30 u-image-2" data-image-width="150" data-image-height="100">
-                        <div class="u-container-layout u-container-layout-4"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      </div>
+    </section>
+    <section class="u-clearfix u-image u-section-3" id="sec-6e8d" data-image-width="1059" data-image-height="423">
+      <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
+        <div class="u-list u-repeater u-list-1">
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover">
+            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-1">
+              <h3 class="u-align-center u-text u-text-1">Milostivi Samilosni</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-1"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-1" data-image-width="1138" data-image-height="1600" src="images/MilostiviSamilosni.jpg">
+              <p class="u-text u-text-2">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="#blockmodal-popup" class="u-border-0 u-btn u-button-style u-palette-3-base u-btn-1">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-2">
+            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-2">
+              <h3 class="u-align-center u-text u-text-3">Milostivi Samilosni</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-2"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-2" data-image-width="1138" data-image-height="1600" src="images/MilostiviSamilosni.jpg">
+              <p class="u-text u-text-4">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="#ime2-popup" class="u-border-0 u-btn u-button-style u-palette-3-base u-btn-2">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-3">
+            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-3">
+              <h3 class="u-align-center u-text u-text-5">Vladar</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-3"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-3" data-image-width="914" data-image-height="1281" src="images/Vladar.jpg">
+              <p class="u-text u-text-6">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="#ime3-popup" class="u-border-0 u-btn u-button-style u-palette-3-base u-btn-3">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-4">
+            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-4">
+              <h3 class="u-align-center u-text u-text-7">Opskrbitelj</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-4"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-4" data-image-width="939" data-image-height="1279" src="images/opskrbitelj.jpg">
+              <p class="u-text u-text-8">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-border-0 u-btn u-button-style u-palette-3-base u-btn-4">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-5">
+            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-5">
+              <h3 class="u-align-center u-text u-text-9">Beskrajno Veliki</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-5"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-5" data-image-width="914" data-image-height="1279" src="images/BeskrajnoVeliki.jpg">
+              <p class="u-text u-text-10">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-border-0 u-btn u-button-style u-palette-3-base u-btn-5">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-6">
+            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-6">
+              <h3 class="u-align-center u-text u-text-11">Onaj koji mnogo prašta</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-6"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-6" data-image-width="1135" data-image-height="1600" src="images/MnogoPrasta.jpg">
+              <p class="u-text u-text-12">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-border-0 u-btn u-button-style u-palette-3-base u-btn-6">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-7">
+            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-7">
+              <h3 class="u-align-center u-text u-text-13">Onaj koji mnogo prašta</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-7"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-7" data-image-width="1135" data-image-height="1600" src="images/MnogoPrasta.jpg">
+              <p class="u-text u-text-14">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="#blockmodal-popup" class="u-border-0 u-btn u-button-style u-palette-3-base u-btn-7">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-8">
+            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-8">
+              <h3 class="u-align-center u-text u-text-15">Onaj koji mnogo prašta</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-8"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-8" data-image-width="1135" data-image-height="1600" src="images/MnogoPrasta.jpg">
+              <p class="u-text u-text-16">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-border-0 u-btn u-button-style u-palette-3-base u-btn-8">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-9">
+            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-9">
+              <h3 class="u-align-center u-text u-text-17">Onaj koji mnogo prašta</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-9"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-9" data-image-width="1135" data-image-height="1600" src="images/MnogoPrasta.jpg">
+              <p class="u-text u-text-18">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-border-0 u-btn u-button-style u-palette-3-base u-btn-9">learn more</a>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="u-clearfix u-section-3" id="sec-2d2c">
+    <section class="u-align-left u-clearfix u-image u-section-4" id="blockmodal" data-image-width="960" data-image-height="1280">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+        <p class="u-text u-text-1">
+          <span style="font-size: 0.875rem;">1.&nbsp;ALLAH (اللّٰه)</span>
+          <br>
+          <br>Zato što si Ti Allah, moja je duša poletna.💓<br>💬Dugo sinoć nisam mogla zaspati. Razmišljala sam koji je to najljepši način da drugima predstavim ovo vlastito ime. Jer ono to i jeste - najljepše vlastito ime ikada.<br>&nbsp;📌Allah je ime koje ukazuje na Biće koje se istinski obožava i ime koje upućuje na sva ostala Allahova lijepa imena. Osnova imena je riječ el-ilah(bog, božanstvo).&nbsp;<br>📌Ime "Allah" stoji iznad svih drugih imena i nikada niko nije nazvan tim imenom osim Allah. ("Znaš li da ime Njegovo ima iko?" Merjem, 65)<br>📌Sibevejh, arapski lingvista, uzvišeno ime "Allah" definirao je kao imenicu svih imenica.<br>📌 Ovo ime se najviše spominje u Kur'anu - više od 2200 puta.&nbsp;<br>📌 Najuzvišenija rečenica koja sadrži ovo ime je "la ilahe illallah"(nema boga osim Allaha; nema boga koji je dostojan da se obožava osim Allah).&nbsp;Dio sahih-hadisa glasi:"Kada bi se sedam nebesa i sedam zemalja i sva stvorenja na njima stavila na jedan tas vage, a riječi 'la ilahe illallah' na drugi, riječi 'la ilahe illallah' bi prevagnule." To su riječi uspjeha na oba svijeta.&nbsp;(Zadatak za tebe i za nas: pokušajmo ih što češće svjesno izgovarati. Podsjetnik: za izgovor ovih najvažnijih riječi nije potrebno pomjeranje nijednog drugog dijela govornog aparata osim jezika, tako &nbsp;da je potpuno neprimjetno i moguće u svim prilikama. Koliko sve te prilike iskorištavamo?)&nbsp;<br>📌Allahovo najveće ime?&nbsp;Rekao je Poslanik, as: "Nijedan musliman nikada neće doviti njime, a da mu se Allah neće odazvati."(Ahmed, Tirmizi...) Veliki je broj mišljenja koje je to ime. Neki kažu da je upravo "Allah" najveće od svih imena. Neki kažu da to nije samo jedno određeno ime. Neki kažu da je to svako ime kojim rob iz sveg srca, onda kada je u potpunosti predan Allahu i srcem i mislima, zamoli Njega Uzvišenog za nešto.<br>💬Na kraju sam shvatila da je nemoguće i, za naš mozak skromnog kapaciteta, nedokučivo značenje imena Allah. Ne možemo ga pojmiti, koliko god se trudili. Specifično je i toliko savršeno. Zbog toga na nas i ostavlja utisak veličine i zapanjenosti, divljenja i težnje. Ne možemo ga razumom objasniti, ali je naša duša sposobna da osjeti svu tu ljepotu. Stvari duše se zato ni ne trebaju objašnjavati, jer za tim nema potrebe. Naš ruh je dio kojeg je Uzvišeni Gospodar u nas udahnuo. Zato i težnja ka Njemu, ka savršenosti. Ostaje nam da čežnjivo čekamo naš ponovni sastanak trudeći se da Onaj koji je savršen bude zadovoljan nama nesavršenima.&nbsp;"Takav vam je Allah, moj Gospodar, na Njega se oslanjam i Njemu se obraćam."(Sura Šura, 10)&nbsp;<br>💭Pitanja za razmišljanje:&nbsp;<br>1. Šta riječ "Allah" predstavlja u mom životu?&nbsp;<br>2. U kojim i kakvim sve prilikama je koristim?&nbsp;<br>3. Koje me emocije prožimaju kada izgovorim riječ "Allah"?&nbsp;<br>4. Koliko često nisam svjestan/na da je izgovorim, tj. koliko je često izgovorim automatski, bez razmišljanja o njoj?&nbsp;<br>5. Da li se često zaklinjem Bogom?<br>&nbsp;6. ...&nbsp;<br>Postavljaj sam/a sebi i druga pitanja i ne zaboravi da zapisuješ svoja promišljanja.💓
+        </p>
+      </div>
+    </section>
+    <section class="u-align-left u-clearfix u-image u-section-5" id="ime2" data-image-width="960" data-image-height="1280">
+      <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xl u-sheet-1">
+        <p class="u-text u-text-1">
+          <span style="font-size: 0.875rem;">2. Er-Rahmān (الرَّحْمٰنُ) <br>3. Er-Rahīm (ُالرَّحِيم) 
+          </span>
+          <br>💬 Sjedne insan često sam sa sobom da raščisti neke stvari. Vraćaš film unazad, a ono, ima šta i da vidiš: problemi, grijesi, obuzme te briga i tuga; a onda, zastaneš i sjetiš se. <br>On je, Er-Rahmān - Svemilosni i Er-Rahīm - Samilosni.❤ <br>📌Jezičko značenje riječi rahmet je 'milost, nježnost, naklonjenost, rodbinska veza ili maternica'. <br>Oba imena su izvedena iz riječi rahmet, samo uveličano. <br>Ime Er-Rahmān je većeg stepena, sveobuhvatnije od Er-Rahīm. <br>📌 Er-Rahmān (Milostivi) i Er-Rahīm (Samilosni) su Allahova uzvišena imena koja se često spominju u časnom Kur’anu. <br>📌 Ova dva Allahova lijepa imena su od posebnog značaja i važnosti. To su imena kojima je Uzvišeni Allah u Svojoj plemenitoj Knjizi otpočeo suru El-Fatiha i sve ostale sure u kojima je objavio uputu i jasne dokaze.&nbsp; <br>📌 Na mnogim mjestima u Kur’anu ova dva Allahova imena navedena su skupa i oba ukazuju na Allahovu dž.š., osobinu milosti. S tim što, kada dođu skupa, onda ukazuju na postojanje rahmeta kao Allahovog svojstva i djela. Tako je Er-Rahmān - Onaj kojem je rahmet osobina, a Er-Rahīm - Onaj koji je Milostiv prema Svojim robovima. Dokaz tome su riječi Uzvišenog: ,,On vas blagosilja, a i meleki Njegovi, da bi vas iz tmina na svjetlo izveo, On je prema vjernicima milostiv” (El-Ahzab, 43 ajet); <br>“On je prema njima blag i milostiv” (Et-Tevbe, 117 ajet). <br>📌 Jedna kur'anska sura nosi naziv "Er-Rahmān" <br>📌 Ime Er-Rahmān se u Kur'anu spominje 57 puta, a Er-Rahīm 115 puta. <br>📌 Uzvišeni Allah u Kur'anu kaže: ,,Milostivi poučava Kur’anu” (Er-Rahmān, 1-2 ajet) <br>📌 „Onima koji su milostivi smilovat će se Allah svemilosni.“ (Hadis) <br>📌 Uzvišeni Allah u hadisu kudsijji je rekao: „Budite milostivi prema onima koji su na Zemlji, pa će se vama smilovati Onaj koji je na nebu.“ <br>💬 Ima nešto u tom imenu Er-Rahmān što ti srce smiri i da ti nadu. <br>Jednostavno, shvatiš da si ti samo insan i da je nemoguće da ne pogriješiš u svome životu, shvatiš da je to u redu dokle god se kaješ i nastojiš popraviti ono što se desilo. Ponekad budeš ljut na sebe do te mjere da misliš kako je sve u tvome životu propalo, da nema više nade, a zaboraviš na Gospodara koji je Er-Rāhman i Er-Rahīm. <br>Zaboraviš na Gospodara Koji je prema tebi milostiviji od tvoje majke i Koji tvoj život može promijeniti dok trepneš okom. <br>On iz svoje milosti prema tebi kaže: ,,Budi, i ono bude."
+Dovoljna je jedna iskrena sedžda, dova, uzdah ili suza da Er-Rahmān tvoj život promijeni u potpunosti. <br>Često samu sebe podsjetim na jedan divan kur'anski ajet, u kome Allah dž.š., kaže: ,,Gospodar vaš je sam Sebi propisao da bude milostiv.” (El-En‘am, 54 ajet) . Zastaneš, razmišljaš. Imaš Gospodara koji je sam Sebi propisao da bude milostiv, pa šta je onda s nama ljudima?&nbsp;Zašto mi nemamo milosti jedni prema drugima, a Allah je sam Sebi propisao da bude milostiv? <br>Sve što imaš od ovog dunjaluka, a većinu toga nisi ni tražio ni zaslužio, dobio si jer te On voli. Ti si Njegovo stvorenje kojem On voli da prašta, ma koliko grijeha imao. Zapamti, Njegova vrata milosti i oprosta su uvijek širom otvorena.❤ <br>💭Pitanja za razmišljanje: <br>1. Šta riječi "Er-Rahmān" i "Er-Rahīm" predstavljaju u tvome životu? <br>2. U kojim i kakvim ih sve prilikama koristiš? <br>3. Koje te emocije prožimaju kada izgovoriš ove dvije riječi? <br>4. Prema kome u životu trebaš biti više milostiv? <br>5. Kako da iskažeš svoju milost prema majci u čijoj si milosti(maternici) bio/la 9 mjeseci? <br>6. Kako svoju milost možeš povećati prema ljudima? <br>7. Kako svoju milost možeš povećati prema životinjama? <br>📌 Na kraju, podsjećam nas na dva divna kur'anska ajeta u kojima Allah dž.š., kaže: <br>,,Onaj ko kakvo zlo učini ili se prema sebi ogriješi pa poslije zamoli Allaha da mu oprosti – naći će da Allah prašta i da je milostiv." (En-Nisa, 110. ajet) <br>„A milost Moja obuhvaća sve, daću je onima koji se budu grijeha klonili i zekat davali i onima koji u dokaze Naše budu vjerovali." (Al-A'raf, 156 ajet)
+        </p>
+      </div>
+    </section>
+    <section class="u-align-left u-clearfix u-image u-section-6" id="ime3" data-image-width="960" data-image-height="1280">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-text u-text-1">4. El- Melik (المَلِكُ) <br>Zato što si ti El- Melik, ja se prepuštam Tvojoj vlasti i moja duša je ponizna pred Tobom. 💗 <br>💬 Razmišljam. Kada bi samo insan istinski shvatio ovo uzvišeno Allahovo ime, u njegovoj duši ne bi bilo straha ni od čega osim od Njega. Brige bi ga napustile, a duša bi mu bila slobodna i spokojna, pokoravajući se volji Vladara svih vladara. <br>📌 Uzvišeno Allahovo ime El- Melik, El- Mālik, El- Melīk-  Vladar. <br>📌 Jezičko značenje Melik, Melīk i Malik: onaj koji posjeduje vlast. <br>📌 Poznavaoci dubljeg značenja kažu da El- Melik znači potpuni vladar svih vrsta posjeda, dok je El- Malik vlasnik posebne vlasti. El- Melik je, dakle, sveobuhvatnije od El- Malik. <br>📌 Ibn Džerir, rahimehullah, je rekao: “El- Melik (Vladar) jeste Onaj iznad kojeg, kao vladara, nema i ne postoji ništa. Sve je to ispod Njega.” <br>📌 Istinska vlast pripada Allahu Jedinom i niko ne učestvuje s Njim u vlasti. Svaki onaj koji nešto posjeduje, posjeduje to uz Allahovo posjedovanje i toga i njega samog. <br>📌 Allahovo ime El- Melik se u Kur’anu spominje 5 puta. Neka je Uzvišen Allah, Vladar istiniti!” (Taha, 114) <br>“On je Allah- nema drugog boga osim Njega- Vladar Istiniti.” (El- Hašr, 23)
+Vladara ljudi.” (En- Nas, 2) <br>📌 Allahovo ime El- Malik se spominje 2 puta u Kur’anu. "Vladara Dana sudnjeg.”  (El- Fatiha, 3) “Reci: “O Allahu, Ti koji svu vlast imaš...” (Ali Imran, 26) <br>📌 Allahovo ime El- Melīk se spominje samo jednom u Kur’anu, u 55. ajetu sure El- Qamer. <br>📌 Čovjek je posjednik (malik) nečega, ali Istinski Vlasnik (El- Malik) je samo Allah Uzvišeni. <br>📌 Učenjaci kažu da 26. ajet sure Ali Imran obuhvata sva Allahova lijepa imena i savršena značenja. Poslanik s.a.v.s. nikada nije proučio taj ajet a da nije zaplakao. Neki učenjaci smatraju da je Allahovo najveće ime “Malikul- mulk” (sadržano u spomenutom ajetu). <br>📌 Allah Uzvišeni ima apsolutnu vlast (El- Melik) i On njome savršeno vlada (El- Malik). <br>📌 Zabranjeno je da čovjek nosi ime “Malikul- mulk” ili da sebe naziva apsolutnim vladarom. <br>📌 Apsolutna vlast i pokornost pripadaju samo Allahu, Istinskom Vladaru. Svi ostali vladari su u Njegovoj vlasti, Njegovi robovi. <br>💬 Divno li je znati da je naš Jedini i Istinski Vladar samo Allah. Divno li je znati da On upravlja sa svim, i da nam niko ne može pribaviti neku korist ili nanijeti štetu bez Njegove dozvole. Divno li je znati da su naš život i naša smrt, naše zdravlje, naša porodica, naš imetak, naše znanje i sve ostalo što imamo, a i mi sami u Njegovoj vlasti. Koliko nas ta spoznaja rasterećuje od dunjalučkih briga, i oslobađa od straha i strepnje pred robovima Njegovim. <br>"Reci: "O Allahu, koji svu vlast imaš, Ti vlast onome kome hoćeš daješ, a oduzimaš je od onoga od koga hoćeš; Ti onoga koga hoćeš uzvisuješ, a onoga koga hoćeš unizuješ; u Tvojoj ruci je svako dobro - Ti, uistinu, sve možeš!" (Ali Imran,26.) <br>Sve, apsolutno sve što se dešava i što nas okružuje je u vlasti Vladara. Vjerovanje u ovo uzvišeno Allahovo ime čini da se čovjekovo srce smiruje pred svim vrstama iskušenja. Također, spoznaja da je Allah Jedini Istinski Vladar, ne dozvoljava čovjeku da se ponese ili nepravedno postupa ma koliku ovozemaljsku vlast imao. Ona (ova spoznaja) budi svijest u čovjeku da on nije apsolutni vladar niti vlasnik bilo čega i da će za svoju odgovornost i svoja djela odgovarati pred apsolutnim Vladarem. <br>Svako onaj ko se nepravedno ponese onim što mu je dato, prije ili kasnije će spoznati da zapravo nema nikakvu moć niti vlast. Takav slučaj je bio sa Faraonom, pa je na koncu shvatio da je jedini gospodar i vladar samo Allah. <br>💭 Pitanja za razmišljanje: <br>1.	Šta u tvome životu predstavljaju riječi “El- Malik” i “El- Melik”? <br>2.	Razmišljaš li dok učiš suru El- Fatihu na svakom rekatu svojih namaza o ovom uzvišenom Allahovom imenu? <br>3.	Da li si ikada pomislio/ la da si ti vlasnik/ vlasnica nečega? <br>4.	Koliko često spominješ ovo uzvišeno Allahovo ime? <br>5.	Da li se bojiš Allahovih stvorenja zbog vlasti koja im je data više nego Vladara svega? <br>6.	Da li se pokoravaš Allahovim stvorenjima u onome što je nepokornost prema Allahu? <br>7.	Da li si milostiv/ a i pravedan/ na prema onima koji su u tvojoj privremenoj “vlasti”? <br>8.	Da li vjeruješ da je sve u apsolutoj vlasti Vladara svih vladara? <br>9.	Da li imaš svijest od odgovornosti pred Vladarem za funkciju/ poziciju koja ti je povjerena na ovom svijetu? <br>10.	Da li si “vlasnik” svojih strasti i svoga nefsa ili oni vladaju tobom? <br>📌 Za kraj jedan divan ajet koji nas podsjeća na neizmjernu Allahovu milost, iako je On apsolutni vladar: <br>“Toga Dana će istinska vlast biti samo u Milostivoga.”  (El- Furkan, 26) <br>Ujedno, ovaj ajet nas također podsjeća da ličnost ovozemaljakog vladara nije potpuna bez dobročinstva, milosti i samilosti. Veličina je imati vlast i moć a pokaz 
+        </p>
+      </div>
+    </section>
+    <section class="u-clearfix u-image u-section-7" id="sec-2d2c" data-image-width="1280" data-image-height="861">
+      <div class="u-clearfix u-sheet u-valign-bottom-xs u-sheet-1">
+        <div class="u-clearfix u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-layout-wrap u-layout-wrap-1">
           <div class="u-layout">
             <div class="u-layout-row">
               <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
                 <div class="u-container-layout u-container-layout-1">
-                  <img src="images/fa64123da77b0655ae11b68715228ff44dac10b09340cf53e08cb8dade6e9f98a6edb0099f8d544212a555f28ae0a284a34533a503ddafd44bcec1_1280.jpg" alt="" class="u-image u-image-circle u-image-1" data-image-width="1280" data-image-height="861">
+                  <div alt="" class="u-image u-image-circle u-image-1" data-image-width="1280" data-image-height="861"></div>
                 </div>
               </div>
-              <div class="u-align-center u-container-style u-layout-cell u-size-30 u-layout-cell-2">
+              <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-2">
-                  <h2 class="u-text u-text-1">Kako promijeniti sliiibuuuu</h2>
-                  <p class="u-text u-text-2">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+                  <img src="images/viber_image_2021-03-04_15-56-09.jpg" alt="" class="u-expanded-width-lg u-expanded-width-xl u-image u-image-round u-radius-10 u-image-2" data-image-width="1059" data-image-height="423">
+                  <h2 class="u-align-center u-text u-text-1" data-animation-name="fadeIn" data-animation-duration="1000" data-animation-delay="0">2 x 9</h2>
+                  <p class="u-align-center u-text u-text-2">Prošli ste prvih 9 Allahovih lijepih imena, idemo na drugih 9 !</p>
                 </div>
               </div>
             </div>
@@ -138,6 +356,118 @@
         </div>
       </div>
     </section>
+    <section class="u-clearfix u-image u-section-8" id="carousel_90a9" data-image-width="1059" data-image-height="423">
+      <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
+        <div class="u-list u-repeater u-list-1">
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover">
+            <div class="u-container-layout u-similar-container u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-1">
+              <h3 class="u-align-center u-text u-text-1">Milostivi Samilosni</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-1"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-1" data-image-width="1138" data-image-height="1600" src="images/MilostiviSamilosni.jpg">
+              <p class="u-text u-text-2">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-btn u-button-style u-palette-3-base u-btn-1">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-2">
+            <div class="u-container-layout u-similar-container u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-2">
+              <h3 class="u-align-center u-text u-text-3">Milostivi Samilosni</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-2"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-2" data-image-width="1138" data-image-height="1600" src="images/MilostiviSamilosni.jpg">
+              <p class="u-text u-text-4">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-btn u-button-style u-palette-3-base u-btn-2">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-3">
+            <div class="u-container-layout u-similar-container u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-3">
+              <h3 class="u-align-center u-text u-text-5">Čisti</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-3"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-3" data-image-width="1147" data-image-height="1600" src="images/Cisti.jpg">
+              <p class="u-text u-text-6">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-btn u-button-style u-palette-3-base u-btn-3">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-4">
+            <div class="u-container-layout u-similar-container u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-4">
+              <h3 class="u-align-center u-text u-text-7">Opskrbitelj</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-4"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-4" data-image-width="939" data-image-height="1279" src="images/opskrbitelj.jpg">
+              <p class="u-text u-text-8">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-btn u-button-style u-palette-3-base u-btn-4">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-5">
+            <div class="u-container-layout u-similar-container u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-5">
+              <h3 class="u-align-center u-text u-text-9">Beskrajno Veliki</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-5"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-5" data-image-width="914" data-image-height="1279" src="images/BeskrajnoVeliki.jpg">
+              <p class="u-text u-text-10">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-btn u-button-style u-palette-3-base u-btn-5">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-6">
+            <div class="u-container-layout u-similar-container u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-6">
+              <h3 class="u-align-center u-text u-text-11">Onaj koji mnogo prašta</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-6"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-6" data-image-width="1135" data-image-height="1600" src="images/MnogoPrasta.jpg">
+              <p class="u-text u-text-12">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-btn u-button-style u-palette-3-base u-btn-6">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-7">
+            <div class="u-container-layout u-similar-container u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-7">
+              <h3 class="u-align-center u-text u-text-13">Onaj koji mnogo prašta</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-7"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-7" data-image-width="1135" data-image-height="1600" src="images/MnogoPrasta.jpg">
+              <p class="u-text u-text-14">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-btn u-button-style u-palette-3-base u-btn-7">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-8">
+            <div class="u-container-layout u-similar-container u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-8">
+              <h3 class="u-align-center u-text u-text-15">Onaj koji mnogo prašta</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-8"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-8" data-image-width="1135" data-image-height="1600" src="images/MnogoPrasta.jpg">
+              <p class="u-text u-text-16">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-btn u-button-style u-palette-3-base u-btn-8">learn more</a>
+            </div>
+          </div>
+          <div class="u-container-style u-custom-color-3 u-list-item u-repeater-item u-video-cover u-list-item-9">
+            <div class="u-container-layout u-similar-container u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-9">
+              <h3 class="u-align-center u-text u-text-17">Onaj koji mnogo prašta</h3>
+              <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-9"></div>
+              <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-9" data-image-width="1135" data-image-height="1600" src="images/MnogoPrasta.jpg">
+              <p class="u-text u-text-18">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              <a href="" class="u-btn u-button-style u-palette-3-base u-btn-9">learn more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="u-clearfix u-image u-section-9" id="carousel_5b21" data-image-width="1280" data-image-height="861">
+      <div class="u-clearfix u-sheet u-valign-bottom-xs u-sheet-1">
+        <div class="u-clearfix u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
+                <div class="u-container-layout u-container-layout-1">
+                  <div alt="" class="u-image u-image-circle u-image-1" data-image-width="1280" data-image-height="861"></div>
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-2">
+                  <img src="images/viber_image_2021-03-04_15-56-09.jpg" alt="" class="u-expanded-width-lg u-expanded-width-xl u-image u-image-round u-radius-10 u-image-2" data-image-width="1059" data-image-height="423">
+                  <h2 class="u-align-center u-text u-text-1" data-animation-name="fadeIn" data-animation-duration="1000" data-animation-delay="0">3 x 9</h2>
+                  <p class="u-align-center u-text u-text-2">Prošli ste 18 Allahovih lijepih imena, idemo na trećih 9 !</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <style class="u-overlap-style">.u-overlap:not(.u-sticky-scroll) .u-header {
+background-color: #478ac9 !important
+}</style>
     
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-7cc2"><div class="u-clearfix u-sheet u-sheet-1">
