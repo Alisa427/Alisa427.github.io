@@ -4089,6 +4089,7 @@
   font-size: 1.25rem;
   font-style: italic;
   font-family: "Open Sans", sans-serif;
+  animation-duration: 1000ms;
   margin: 441px auto 0 190px;
   padding: 0;
 }
@@ -4098,6 +4099,7 @@
   font-size: 1.25rem;
   font-style: italic;
   font-family: "Open Sans", sans-serif;
+  animation-duration: 1000ms;
   margin: 0 auto 0 476px;
   padding: 0;
 }
@@ -4107,6 +4109,7 @@
   font-size: 1.25rem;
   font-style: italic;
   font-family: "Open Sans", sans-serif;
+  animation-duration: 1000ms;
   margin: 0 auto 0 787px;
   padding: 0;
 }
