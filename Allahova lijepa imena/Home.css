@@ -3495,46 +3495,95 @@
     margin-left: 5px;
   }
 }.u-section-7 {
-  background-image: none;
+  background-image: url("images/0a4b40ea76e562f801154b1e509e5373.jpg");
+  background-position: 62.98% 0.55%;
+  background-size: 120%;
 }
 
 .u-section-7 .u-sheet-1 {
-  min-height: 712px;
+  min-height: 1444px;
+}
+
+.u-section-7 .u-group-1 {
+  width: 985px;
+  min-height: 1248px;
+  height: auto;
+  margin: 156px auto 40px;
+}
+
+.u-section-7 .u-container-layout-1 {
+  padding: 30px;
 }
 
 .u-section-7 .u-text-1 {
-  font-size: 1.125rem;
+  margin-top: 0;
   font-weight: 700;
-  margin: 7px 0 20px;
 }
 
 @media (max-width: 1199px) {
   .u-section-7 .u-sheet-1 {
-    min-height: 587px;
+    min-height: 1190px;
+  }
+
+  .u-section-7 .u-group-1 {
+    width: 940px;
+    height: auto;
   }
 }
 
 @media (max-width: 991px) {
+  .u-section-7 {
+    background-position: 48.54% 33.27%;
+    background-size: auto 145%;
+  }
+
   .u-section-7 .u-sheet-1 {
-    min-height: 450px;
+    min-height: 2199px;
+  }
+
+  .u-section-7 .u-group-1 {
+    margin-top: 98px;
+    margin-bottom: 50px;
+    min-height: 2051px;
+    margin-right: initial;
+    margin-left: initial;
+    width: auto;
   }
 }
 
 @media (max-width: 767px) {
   .u-section-7 .u-sheet-1 {
-    min-height: 338px;
+    min-height: 1649px;
+  }
+
+  .u-section-7 .u-container-layout-1 {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
 @media (max-width: 575px) {
+  .u-section-7 {
+    background-position: 56.23% 0.55%;
+  }
+
   .u-section-7 .u-sheet-1 {
-    min-height: 1700px;
+    min-height: 5191px;
+  }
+
+  .u-section-7 .u-group-1 {
+    min-height: 4995px;
+    margin-top: 70px;
+    margin-bottom: 60px;
+    width: auto;
+    margin-right: initial;
+    margin-left: initial;
   }
 
   .u-section-7 .u-text-1 {
+    margin-left: 0;
+    margin-right: -8px;
     width: auto;
-    margin-top: 16px;
-    margin-right: 62px;
   }
 }.u-section-8 {
   background-image: none;
@@ -4551,7 +4600,6 @@
   }
 
   .u-section-19 .u-layout-wrap-2 {
-    position: relative;
     min-height: 587px;
     width: 540px;
   }
@@ -4836,7 +4884,7 @@
   }
 
   .u-section-20 .u-sheet-1 {
-    min-height: 100vh;
+    min-height: 828px;
   }
 
   .u-section-20 .u-group-1 {
@@ -7650,17 +7698,18 @@
 
 @media (max-width: 575px) {
   .u-section-31 .u-sheet-1 {
-    min-height: 1700px;
+    min-height: 4728px;
   }
 
   .u-section-31 .u-group-1 {
-    width: 320px;
-    min-height: 4310px;
+    width: 292px;
+    min-height: 4591px;
+    margin-left: 5px;
   }
 
   .u-section-31 .u-text-1 {
     width: auto;
-    margin-right: 20px;
+    margin-right: -8px;
   }
 }.u-section-32 {
   background-image: url("images/h3HQIWK.jpg");
@@ -7725,17 +7774,18 @@
 
 @media (max-width: 575px) {
   .u-section-32 .u-sheet-1 {
-    min-height: 1700px;
+    min-height: 3320px;
   }
 
   .u-section-32 .u-group-1 {
-    width: 320px;
-    min-height: 2799px;
+    width: 292px;
+    min-height: 3183px;
+    margin-left: 5px;
   }
 
   .u-section-32 .u-text-1 {
     width: auto;
-    margin-right: 20px;
+    margin-right: -8px;
   }
 }.u-section-33 {
   background-image: url("images/h3HQIWK.jpg");
@@ -7800,16 +7850,18 @@
 
 @media (max-width: 575px) {
   .u-section-33 .u-sheet-1 {
-    min-height: 1700px;
+    min-height: 2270px;
   }
 
   .u-section-33 .u-group-1 {
-    width: 320px;
+    width: 292px;
+    min-height: 2134px;
+    margin-left: 5px;
   }
 
   .u-section-33 .u-text-1 {
     width: auto;
-    margin-right: 20px;
+    margin-right: -8px;
   }
 }.u-section-34 {
   background-image: url("images/h3HQIWK.jpg");
@@ -7874,17 +7926,18 @@
 
 @media (max-width: 575px) {
   .u-section-34 .u-sheet-1 {
-    min-height: 1700px;
+    min-height: 2987px;
   }
 
   .u-section-34 .u-group-1 {
-    width: 320px;
-    min-height: 2492px;
+    width: 292px;
+    min-height: 2850px;
+    margin-left: 5px;
   }
 
   .u-section-34 .u-text-1 {
     width: auto;
-    margin-right: 20px;
+    margin-right: -8px;
   }
 }.u-section-35 {
   background-image: url("images/h3HQIWK.jpg");
@@ -7949,16 +8002,17 @@
 
 @media (max-width: 575px) {
   .u-section-35 .u-sheet-1 {
-    min-height: 1700px;
+    min-height: 2218px;
   }
 
   .u-section-35 .u-group-1 {
-    width: 320px;
+    width: 292px;
+    margin-left: 5px;
   }
 
   .u-section-35 .u-text-1 {
     width: auto;
-    margin-right: 20px;
+    margin-right: -8px;
   }
 }.modal__container{
 	overflow-y:scroll;
