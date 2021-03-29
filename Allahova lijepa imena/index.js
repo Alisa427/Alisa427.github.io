@@ -51,7 +51,18 @@ window.onload = function () {
         }
     }
 
+    var myAudio = document.getElementById('ilahijaAudio');
 
+    if (myAudio.duration > 0 && !myAudio.paused) {
+        //Its playing...do your job
+        $('.fa-play-circle-o').hide();
+        $('.fa-pause-circle-o').fadeIn();
+    } else {
+        $('.fa-pause-circle-o').hide();
+        $('.fa-play-circle-o').fadeIn();
+        //Not playing...maybe paused, stopped or never played.
+        myAudio.play();
+    }
 
     /**Music section */
     $(".btn .fa-play-circle-o").on('click', function () {
