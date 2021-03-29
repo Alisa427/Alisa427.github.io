@@ -192,6 +192,7 @@
     margin-top: -28px;
     padding: 7px 13px;
     top: 3px;
+    z-index: 1;
   }
 }.u-section-2 {
   background-image: url("images/bcgrnd2.jpg");
@@ -7915,6 +7916,17 @@
     width: 360px;
   }
 
+  .btn {
+    font-size: 60px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .u-land-section .u-flex-center .main-header-title {
+    width: 600px;
+  }
+  .u-land-back-circle {
+    top: 2vh;
+  }
   .btn {
     font-size: 60px;
   }
