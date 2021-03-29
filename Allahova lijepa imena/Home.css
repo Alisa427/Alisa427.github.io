@@ -971,8 +971,8 @@
 
   .u-section-3 .u-btn-2 {
     margin-top: 6px;
-    padding-right: 32px;
-    padding-left: 32px;
+    padding-right: 0px;
+    padding-left: 8px;
   }
 }.u-section-4 {
   background-image: url("images/bcgrnd3.jpg");
