@@ -7870,7 +7870,12 @@
 	display: none;
 }
 
-@media (max-width: 768px) {
+
+      /*****************
+       CSS for .bg-music
+       ******************/
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 409px) {
   .bg-music {
     top: 70vh;
     right: 1px;
@@ -7878,5 +7883,89 @@
 
   .btn {
     font-size: 30px;
+  }
+}
+
+@media only screen and (min-device-width : 410px) and (max-device-width : 568px) {
+  .bg-music {
+    top: 62vh;
+    right: 1px;
+  }
+
+  .btn {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (device-height : 568px) {
+  .bg-music {
+    top: 79vh;
+    right: -13px;
+  }
+
+  .btn {
+    font-size: 30px;
+  }
+}
+@media only screen and (device-height : 823px) {
+  .bg-music {
+    top: 55vh;
+    right: 1px;
+  }
+
+  .btn {
+    font-size: 30px;
+  }
+}
+@media only screen and (device-height : 812px) {
+  .bg-music {
+    top: 55vh;
+    right: 1px;
+  }
+
+  .btn {
+    font-size: 30px;
+  }
+}
+@media only screen and (device-height : 667px) {
+  .bg-music {
+    top: 67vh;
+    right: -1px;
+  }
+
+  .btn {
+    font-size: 30px;
+  }
+}
+
+
+@media only screen and (min-device-width : 569px) and (max-width: 767px) {
+  .bg-music {
+    top: 70vh;
+    right: 1px;
+  }
+
+  .btn {
+    font-size: 30px;
+  }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width: 1000px){
+  .bg-music {
+    top: 77vh;
+    right: 1px;
+  }
+
+  .btn {
+    font-size: 50px;
+  }
+}
+@media only screen and (min-device-width : 1001px) and (max-device-width: 1282px){
+  .bg-music {
+    top: 63vh;
+    right: -42px;
+  }
+
+  .btn {
+    font-size: 60px;
   }
 }
