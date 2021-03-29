@@ -8,211 +8,19 @@
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
   <title>Home</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="screen">
   <link rel="stylesheet" href="nicepage.css" media="screen">
   <link rel="stylesheet" href="Home.css" media="screen">
+
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+  <script class="u-script" type="text/javascript" src="index.js" defer=""></script>
+
   <meta name="generator" content="Nicepage 3.10.2, nicepage.com">
-  <style>
-    /* The MIT License (MIT) Copyright (c) 2014 Toby */
-    /* demo only */
-    .flex {
-      display: flex;
-    }
-
-    .align-center {
-      justify-content: center;
-    }
-
-    .align-vert,
-    .align-vert.align-center {
-      align-items: center;
-    }
-
-    /* end demo */
-    .modal {
-      display: none;
-    }
-
-    .modal--show,
-    .modal--hide {
-      display: flex;
-    }
-
-    /* classes fired by js for animation control */
-    /* This is on the wrapper for the whole modal */
-    .modal--align {
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      left: 0;
-      top: 0;
-      background: rgba(0, 0, 0, 0.3);
-      z-index: 999;
-    }
-
-    .modal__container {
-      position: relative;
-      width: 100%;
-      max-width: 1300px;
-      padding: 20px 20px 0px 20px;
-      margin: 12px;
-      background: #fff;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      border-radius: 6px;
-    }
-
-    /* As there is no href to avoid the hash being added to the URL when clicked we add a pointer */
-    /* This 'x' is hidden from screen readers as there is an accessible close button in the modal */
-    .modal__close--x:hover {
-      cursor: pointer;
-    }
-
-    /* Animations */
-    /* Open */
-    .modal.modal--show {
-      animation: modal-open 0.3s;
-    }
-
-    @keyframes modal-open {
-      0% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 1;
-      }
-    }
-
-    /* Close */
-    .modal.modal--hide {
-      animation: modal-close 0.3s;
-    }
-
-    @keyframes modal-close {
-      0% {
-        opacity: 1;
-      }
-
-      100% {
-        opacity: 0;
-      }
-    }
-
-    .modal__close--x {
-      position: absolute;
-      line-height: 19px;
-      top: 10px;
-      right: 10px;
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 1;
-      color: #000;
-      text-shadow: 0 1px 0 #fff;
-      font-family: "Open Sans", "Arial", "sans-serif";
-      opacity: .2;
-    }
-
-    .modal {
-      text-align: center;
-    }
-  </style>
-  <style>
-    .modal__container [class*="section"] {
-      display: block !important;
-      overflow: hidden;
-    }
-
-    .modal__close--x {
-      z-index: 1;
-    }
-  </style>
-  <script> var buttonSelector = 'a[href*="-popup"]',
-      parseId = function (href) { return href.replace('-popup', '').replace('#', ''); };
-    window.onload = function () {
-      $('body').on('click', buttonSelector, function (event) {
-        var id = parseId(event.currentTarget.getAttribute('href'));
-        var modalId = 'modal-' + id;
-        if ($('#' + modalId).length === 0) {
-          $('body').append('<div class="flex align-center align-vert modal modal--align" id="' + modalId + '">' +
-            '    <div class="modal__container">' +
-            '        <span class="modal__close modal__close--x" aria-hidden="true">×</span>' +
-            '        ' + document.getElementById(id).outerHTML +
-            '    </div>' +
-            '</div>');
-        }
-        $('#' + modalId).addClass('modal--show');
-      });
-      var closeModal = function (modal) {
-        modal.removeClass('modal--show');
-        modal.addClass('modal--hide');
-        var afterAnimation = function () {
-          modal.removeClass('modal--hide');
-        };
-        // This listens for the CSS animations to finish and then hides the modal
-        modal[0].addEventListener("webkitAnimationEnd", afterAnimation, false);
-        modal[0].addEventListener("oAnimationEnd", afterAnimation, false);
-        modal[0].addEventListener("msAnimationEnd", afterAnimation, false);
-        modal[0].addEventListener("animationend", afterAnimation, false);
-        setTimeout(afterAnimation, 400);
-      }
-      // Close the modal with any element with class 'modal__close'
-      $('body').on('click', '.modal__close', function (e) {
-        closeModal($(e.currentTarget).closest('.modal'));
-      });
-      // Click outside of the modal and close it
-      window.onclick = function (e) {
-        if ($(e.target).is('.modal')) {
-          closeModal($(e.target));
-        }
-      }
-      // Use the escape key to close modal
-      document.onkeyup = function (e) {
-        e = e || window.event;
-        if (e.keyCode == 27 && $('.modal--show').length === 1) {
-          closeModal($('.modal--show'));
-        }
-      }
-    };
-    document.addEventListener("DOMContentLoaded", function (event) {
-      var buttons = document.querySelectorAll(buttonSelector);
-      for (var i = 0; i < buttons.length; i++) {
-        var section = document.getElementById(parseId(buttons[i].getAttribute('href')));
-        if (section) {
-          section.style.display = 'none';
-        }
-      }
-    });</script>
 
   <link id="u-theme-google-font" rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <script type="application/ld+json">{
 		"@context": "http://schema.org",
@@ -227,7 +35,9 @@
   <meta property="og:url" content="index.html">
 </head>
 
-<body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-custom-color-9 u-overlap">
+<body data-home-page="Home.html" data-home-page-title="Home" 
+  class="u-body u-custom-color-9 u-overlap">
+
   <header class="u-border-2 u-border-custom-color-1 u-clearfix u-header u-image u-shading u-header" id="sec-2313"
     data-image-width="1131" data-image-height="1600">
     <div class="u-clearfix u-sheet u-sheet-1">
@@ -282,6 +92,19 @@
   </header>
   <section class="u-align-center u-clearfix u-image u-section-1" src="" id="sec-d197" data-image-width="1131"
     data-image-height="1600">
+
+    <div class="bg-music">
+      <audio id="ilahijaAudio" src="Mishari Alafasy Asma' Allah Alhosna.mp3" autoplay loop="">
+      
+      </audio>
+      <button class="btn">
+        <i class="fa fa-play-circle-o hidden"></i>
+        <i class="fa fa-pause-circle-o"></i>
+      </button>
+      
+    </div>
+
+    
     <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-sheet-1">
       <div
         class="u-custom-color-9 u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-opacity u-opacity-30 u-shape u-shape-circle u-shape-1">
@@ -435,7 +258,7 @@
               mi se smilovati&nbsp;<br>i da ćeš mi oprostiti.&nbsp;<br>❤
             </p>
             <a href="#ime2-popup" class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-2">
-              <span style="font-weight: 700; font-size: 0.75rem;">الرّحمان&nbsp;الرّحيم&nbsp;</span>
+              <span style="font-weight: 700; font-size: 1.25rem;">الرّحمان&nbsp;الرّحيم&nbsp;</span>
               <br>
             </a>
           </div>
@@ -463,7 +286,7 @@
                   data-image-width="914" data-image-height="1281" src="images/Vladar.jpg" data-animation-name="flipIn"
                   data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X">
                 <p class="u-align-center u-text u-text-2">Zato što si Ti&nbsp; El- Me​lik,<br>&nbsp;ja se prepušta​m
-                  Tvojoj vlasti i&nbsp;<br>moja duša je ponizna pred&nbsp;<br>Tobom.&nbsp;❤
+                  Tvojoj vlasti i&nbsp;<br>moja duša je ponizna pred&nbsp;<br>Tobom.&nbsp;❤<br><br>
                 </p>
                 <a href="#ime4-popup"
                   class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-1">المَلِك&nbsp;<br>
@@ -1773,7 +1596,7 @@
                   <p class="u-align-center u-text u-text-8">Zato što si Ti El-Qābid i El-Bāsit, zbog Tvog savršenog davanja i uzimanja moje srce neće negodovati, jer sve što je od Tebe, lijepo je... ❤️
                   </p>
                 <a href="#ime21-popup"
-                  class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-6">القابض</a>
+                  class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-6">القابض الباسط </a>
               </div>
             </div>
           </div>
@@ -1786,22 +1609,16 @@
               <div class="u-container-layout u-valign-bottom-lg u-valign-bottom-xl u-container-layout-16">
                 <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-8">
                 </div>
-                <h3 class="u-align-center u-text u-text-15"><b>EI-Hāfid</b>
+                <h3 class="u-align-center u-text u-text-15"><b>EI-Hāfid, Er-Rāfi'</b>
                   <br>
                 </h3>
                 <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width u-image u-image-default u-image-8"
-                  data-image-width="421" data-image-height="640" src="images/slika2.jpg" data-animation-name="flipIn"
+                  data-image-width="421" data-image-height="640" src="images/Hafid, Rafi'.jpg" data-animation-name="flipIn"
                   data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X">
-                <p class="u-align-center u-text u-text-16">
-                  <span style="font-weight: 700;">Bit će dopunjeno...<br>
-                  </span>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
+                <p class="u-align-center u-text u-text-16">Zato što si ti El-Hāfid i El-Rafi' Onaj Koji uzdiže i spušta, primi naša djela i lijepe riječi uzdigni do Arša.<br><br>
                 </p>
                 <a href="#ime23-popup"
-                  class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-8">الخافض</a>
+                  class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-8">الخافض الرّافع</a>
               </div>
             </div>
           </div>
@@ -1815,7 +1632,7 @@
               <div
                 class="u-absolute-hcenter-xs u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-9">
               </div>
-              <h3 class="u-align-center u-text u-text-17">Er-Rāfi'<br>
+              <h3 class="u-align-center u-text u-text-17">El-Mu'izz<br>
               </h3>
               <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width u-image u-image-default u-image-9"
                 data-image-width="421" data-image-height="640" src="images/slika2.jpg" data-animation-name="flipIn"
@@ -1828,8 +1645,8 @@
                 <br>
                 <br>
               </p>
-              <a href="#ime24-popup"
-                class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-9">الرّافع</a>
+              <a href="#ime25-popup"
+                class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-9">المُعِزّ</a>
             </div>
           </div>
         </div>
@@ -1842,7 +1659,7 @@
             <div class="u-container-layout u-valign-bottom-lg u-valign-bottom-xl u-container-layout-20">
               <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-10">
               </div>
-              <h3 class="u-align-center u-text u-text-19">El-Mu'izz<br>
+              <h3 class="u-align-center u-text u-text-19">El-Muzill<br>
               </h3>
               <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width u-image u-image-default u-image-10"
                 data-image-width="421" data-image-height="640" src="images/slika2.jpg" data-animation-name="flipIn"
@@ -1855,8 +1672,8 @@
                 <br>
                 <br>
               </p>
-              <a href="#ime25-popup"
-                class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-10">المُعِزّ</a>
+              <a href="#ime26-popup"
+                class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-10">المُذِلّ</a>
             </div>
           </div>
         </div>
@@ -1869,7 +1686,7 @@
               <div class="u-container-layout u-valign-bottom-lg u-valign-bottom-xl u-container-layout-22">
                 <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-11">
                 </div>
-                <h3 class="u-align-center u-text u-text-21">El-Muzill<br>
+                <h3 class="u-align-center u-text u-text-21">Es-Semi'<br>
                 </h3>
                 <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width u-image u-image-default u-image-11"
                   data-image-width="421" data-image-height="640" src="images/slika2.jpg" data-animation-name="flipIn"
@@ -1882,41 +1699,14 @@
                   <br>
                   <br>
                 </p>
-                <a href="#ime26-popup"
-                  class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-11">المُذِلّ</a>
+                <a href="#ime27-popup"
+                  class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-11">السّميع</a>
               </div>
             </div>
           </div>
         </div>
         <div
           class="u-align-center u-container-style u-gradient u-list-item u-repeater-item u-video-cover u-list-item-11">
-          <div
-            class="u-container-layout u-similar-container u-valign-bottom-xs u-valign-top-lg u-valign-top-xl u-container-layout-23">
-            <div class="u-container-style u-expanded-width u-group u-shape-rectangle u-group-12">
-              <div class="u-container-layout u-valign-bottom-lg u-valign-bottom-xl u-container-layout-24">
-                <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-12">
-                </div>
-                <h3 class="u-align-center u-text u-text-23">Es-Semi'<br>
-                </h3>
-                <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width u-image u-image-default u-image-12"
-                  data-image-width="421" data-image-height="640" src="images/slika2.jpg" data-animation-name="flipIn"
-                  data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X">
-                <p class="u-align-center u-text u-text-24">
-                  <span style="font-weight: 700;">Bit će dopunjeno...<br>
-                  </span>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
-                </p>
-                <a href="#ime27-popup"
-                  class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-12">السّميع</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="u-align-center u-container-style u-gradient u-list-item u-repeater-item u-video-cover u-list-item-12">
           <div
             class="u-container-layout u-similar-container u-valign-bottom-xs u-valign-top-lg u-valign-top-xl u-container-layout-23">
             <div class="u-container-style u-expanded-width u-group u-shape-rectangle u-group-12">
@@ -1937,7 +1727,34 @@
                   <br>
                 </p>
                 <a href="#ime28-popup"
-                  class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-12">البصير<span
+                  class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-12">البصير</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="u-align-center u-container-style u-gradient u-list-item u-repeater-item u-video-cover u-list-item-12">
+          <div
+            class="u-container-layout u-similar-container u-valign-bottom-xs u-valign-top-lg u-valign-top-xl u-container-layout-23">
+            <div class="u-container-style u-expanded-width u-group u-shape-rectangle u-group-12">
+              <div class="u-container-layout u-valign-bottom-lg u-valign-bottom-xl u-container-layout-24">
+                <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-12">
+                </div>
+                <h3 class="u-align-center u-text u-text-23">El-Hakim<br>
+                </h3>
+                <img alt="" class="u-border-2 u-border-grey-75 u-expanded-width u-image u-image-default u-image-12"
+                  data-image-width="421" data-image-height="640" src="images/slika2.jpg" data-animation-name="flipIn"
+                  data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X">
+                <p class="u-align-center u-text u-text-24">
+                  <span style="font-weight: 700;">Bit će dopunjeno...<br>
+                  </span>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                </p>
+                <a href="#ime29-popup"
+                  class="u-align-center u-border-0 u-btn u-button-style u-palette-3-base u-btn-12">الحكم<span
                     style="font-weight: 700;">
                     <span style="font-size: 1rem;">
                       <span style="font-weight: 400;">
@@ -2030,20 +1847,34 @@ data-image-height="1350">
   <div
     class="u-container-style u-custom-color-9 u-group u-opacity u-opacity-80 u-radius-50 u-shape-round u-group-1">
     <div class="u-container-layout u-container-layout-1">
-      <p class="u-text u-text-1">23. El-Hafid
+      <p class="u-text u-text-1">23. El-Hāfid(الخَافِضُ) - Onaj Koji ponižava; Onaj Koji ponižava svoje robove koji to zaslužuju
+        <br>
+        <br>Ovo ime je najbolje spominjati zajedno s imenom suprotnog značenja er-Rāfi'.
+        <br>
+        <br>24. Er-Rāfi' (الراَفِعُ) - Onaj Koji uzdiže 
+        <br>
+        <br>Onaj Koji svoje robove uzdiže i tako im ukazuje časti. Onaj Koji Svojim prijateljima ukazuje čast a prema neprijateljima prezir. Onaj Koji odlučuje koga će ukazujući mu čast uzdignuti, a koga uskraćujući mu Svoju Milost poniziti. Onaj Koji uzdiže svoje prijatelje i pomaže im u borbi protiv neprijatelja. Onaj Koji uzdiže istinu. Onaj Koji je podigao nebesa bez stubova i pticama dao da lete.
+        <br>
+        <br>Razmislite o sljedećem ajetu: 
+        <br>
+        <br>"Ako neko želi veličinu, pa u Allaha je sva veličina! K Njemu se dižu lijepe riječi i dobro djelo On prima one koji imaju hrđave namjere čeka patnja nesnosna i njihovo spletkarenje je rabota bezuspješna." (Fatir, 10)
+        <br>
+        <br>Pa razmislite gdje vaše riječi putuju, da li se do neba u prah pretvore ili se do Gospodara uzdižu!?
+        <br>Mnogi učenjaci smatraju da  su ova dva imena zapravo Allahova svojstva. 
+        <br>Mi smo ih ovdje naveli zbog pouke da razmislimo o tome šta, gdje i kako se uzdiže od nas ljudi.
       </p>
     </div>
   </div>
 </div>
 </section>
 
-<section class="u-align-left u-clearfix u-image u-section-21" id="ime24" data-image-width="1080"
+<section class="u-align-left u-clearfix u-image u-section-21" id="ime29" data-image-width="1080"
 data-image-height="1350">
 <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-sheet-1">
   <div
     class="u-container-style u-custom-color-9 u-group u-opacity u-opacity-80 u-radius-50 u-shape-round u-group-1">
     <div class="u-container-layout u-container-layout-1">
-      <p class="u-text u-text-1">24. El-Rafi'
+      <p class="u-text u-text-1">29. El-Hakim
       </p>
     </div>
   </div>
@@ -2360,30 +2191,7 @@ data-image-height="1350">
       </div>
     </div>
   </section>
-  <section class="u-align-center u-clearfix u-image u-section-26" id="sec-deb4" data-image-width="1280"
-    data-image-height="861">
-    <div class="u-clearfix u-sheet u-valign-middle-xs u-sheet-1">
-      <div
-        class="u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-custom-color-9 u-expanded-width-xs u-group u-opacity u-opacity-60 u-group-1">
-        <div class="u-container-layout u-valign-top-xs u-container-layout-1">
-          <div class="u-align-left u-expanded-width-sm u-expanded-width-xs u-video u-video-1">
-            <div class="embed-responsive embed-responsive-1">
-              <iframe style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" class="embed-responsive-item"
-                src="https://www.youtube.com/embed/tTao6LY05zw?mute=0&amp;showinfo=0&amp;controls=0&amp;start=0"
-                frameborder="0" allowfullscreen=""></iframe>
-            </div>
-          </div>
-          <h2 class="u-text u-text-1">Sami Yusuf - The 99 Names&nbsp;<br>(أسماء الله الحسنى)
-          </h2>
-          <p class="u-text u-text-2">
-            <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-black u-text-hover-palette-1-base u-btn-1"
-              href="https://www.youtube.com/watch?v=tTao6LY05zw" target="_blank">Možete poslušati 99 Allahovih imena i
-              na Youtube-u&nbsp; ♡</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+ 
   <style class="u-overlap-style">
     .u-overlap:not(.u-sticky-scroll) .u-header {
       background-color: #f6c3b8 !important
